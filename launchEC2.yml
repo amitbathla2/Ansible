@@ -1,0 +1,23 @@
+---
+ - name: Launch Ec2 instance
+   hosts: 127.0.0.1
+   connection: local
+   vars_files:
+           - vault-pass.yml
+
+   tasks:
+    - name: Launch EC2 instancew
+      ec2:
+       aws_access_key: "{{ AWSAccessKeyId }}"
+       aws_secret_key: "{{ AWSSecretKey }}"
+       image: ami-0217a85e28e625474
+       instance_type: t2.micro
+       region: ap-south-1  
+       wait: yes
+       wait_timeout: 400
+      register: ec2
+
+    - name: output ec2 logs
+      debug:
+        msg: "{{ ec2 }}"
+

@@ -1,0 +1,12 @@
+---
+ - name: "play book to git clone"
+   hosts: 127.0.0.1
+   connection: local
+   vars_files:
+           -  vault-pass.yml   
+   tasks:
+    - name: "clone git repo"
+      git:
+       repo: https://amitbathla2:{{ password }}@github.com/amitbathla2/AnsibleTest.git
+       dest: /tmp/test
+
